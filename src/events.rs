@@ -3,7 +3,7 @@ use alloc::vec::Vec;
 use bytes::{BufMut, Bytes, BytesMut};
 
 /// A struct representing a 2 byte IAC sequence.
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub struct TelnetIAC {
   pub command: u8,
 }
@@ -35,7 +35,7 @@ impl TelnetIAC {
 }
 
 /// A struct representing a 3 byte IAC sequence.
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub struct TelnetNegotiation {
   pub command: u8,
   pub option: u8,
@@ -69,7 +69,7 @@ impl TelnetNegotiation {
 }
 
 /// A struct representing an arbitrary length IAC subnegotiation sequence.
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct TelnetSubnegotiation {
   pub option: u8,
   pub buffer: Bytes,
@@ -106,7 +106,7 @@ impl TelnetSubnegotiation {
 }
 
 /// An enum representing various telnet events.
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub enum TelnetEvents {
   /// An IAC command sequence.
   IAC(TelnetIAC),

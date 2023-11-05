@@ -1,5 +1,5 @@
 /// An expansion of a bitmask contained in `CompatibilityTable`.
-#[derive(Clone, Copy)]
+#[derive(Debug, Clone, Copy, Eq, PartialEq)]
 pub struct CompatibilityEntry {
   /// Whether we support this option from us -> them.
   pub local: bool,
@@ -49,7 +49,7 @@ impl CompatibilityEntry {
 }
 
 /// A table of options that are supported locally or remotely, and their current state.
-#[derive(Clone)]
+#[derive(Debug, Clone, Eq, PartialEq)]
 pub struct CompatibilityTable {
   options: [u8; 256],
 }
